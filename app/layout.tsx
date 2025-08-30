@@ -3,6 +3,11 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import Header from "./components/layout/Header"
+import Footer from "./components/layout/Footer"
+import DarkModeToggle from "./components/DarkModeToggle"
+import BackToTopButton from "./components/BackToTopButton"
+import CookieBanner from "./components/CookieBanner"
 import "./globals.css"
 
 const inter = Inter({
@@ -51,7 +56,14 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
       </head>
       <body className={`font-inter antialiased`}>
+        <Header />
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        <Footer />
+        <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-40">
+          <DarkModeToggle />
+          <BackToTopButton />
+        </div>
+        <CookieBanner />
         <Analytics />
       </body>
     </html>
